@@ -11,6 +11,8 @@ class TestDriver
 {
 	public static void main(String args[])
 	{
-		System.out.println("Work in progress...");
+		Client newClient = new Client("Bob Smith");
+		Product newProduct = new Product("Pencil", 0.99, 25);
+		Supplier newSupplier = new Supplier("Pencil Company");
 	}
 }
