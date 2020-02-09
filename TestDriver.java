@@ -14,5 +14,11 @@ class TestDriver
 		Client newClient = new Client("Bob Smith");
 		Product newProduct = new Product("Pencil", 0.99, 25);
 		Supplier newSupplier = new Supplier("Pencil Company");
+		
+		System.out.println("The client's name is: " + newClient.getName() + ".");
+		System.out.println("The supplier's name is: " + newSupplier.getName() + ".");
+		System.out.println("The product's name is: " + newProduct.getName() + ".");
+		System.out.println("The product's price is: " + newProduct.getPrice() + ".");
+		System.out.println("The product's quantity is: " + newProduct.getAmount() + ".");
 	}
 }

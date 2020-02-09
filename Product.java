@@ -17,7 +17,7 @@ class Product{
 		return name;
 	}
 	
-	public double getOutstandingBalance()
+	public double getPrice()
 	{
 		return price;
 	}
