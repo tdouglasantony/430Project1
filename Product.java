@@ -1,4 +1,7 @@
-class Product{
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class Product implements Serializable{
 	// Instance variables
 	String name;
 	double price;

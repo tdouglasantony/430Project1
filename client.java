@@ -1,4 +1,7 @@
-class Client{
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+public class Client implements Serializable{
 	// Instance variables
 	String name;
 	double outstandingBalance;

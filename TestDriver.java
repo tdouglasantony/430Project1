@@ -14,6 +14,7 @@ class TestDriver
 		Client newClient = new Client("Bob Smith");
 		Product newProduct = new Product("Pencil", 0.99, 25);
 		Supplier newSupplier = new Supplier("Pencil Company");
+		ProductList productList = ProductList.instance();
 		
 		System.out.println("The client's name is: " + newClient.getName() + ".");
 		System.out.println("The supplier's name is: " + newSupplier.getName() + ".");
