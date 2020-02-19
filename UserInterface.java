@@ -241,9 +241,7 @@ public class UserInterface {
             System.out.println(client.getID() + " - " + client.getName());
         }
     }
-
-
-
+	
     public void showManufacturersForAProduct() {
 
         String productID = getToken("Enter product ID");
@@ -279,6 +277,17 @@ public class UserInterface {
             System.out.println(productManufacturer.getProduct() + " price " + productManufacturer.getPrice());
         }
     }
+	
+	public void addToCart() {
+		do{
+			String productID = getToken("Enter product ID");
+			String quantity = getToken("Enter product quantity.");
+			int productQuantity = Integer.parseInt(quantity);
+			if (!yesOrNo("Add more products to cart?")) {
+                break;
+            }
+		} while(true);
+	}
 
     private void save() {
         if (Warehouse.save()) {
@@ -343,6 +352,11 @@ public class UserInterface {
 			id = getToken("Enter your ID: ");
 		}
 		clientHelp();
+		int command = Integer.parseInt(getToken(""));
+        switch (command) {
+            case ADD_TO_CART:        addToCart();
+                break;
+            }
 	}
 	
 	public void startProcess(){
