@@ -16,7 +16,14 @@ public class UserInterface {
     private static UserInterface userInterface;
     private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
     private static Warehouse warehouse;
-    private static final int EXIT = 0;
+	
+	/*Exit option (same for all menus)*/
+	private static final int EXIT = 0;
+	
+	/*Start menu options*/
+	private static final int ADMINISTRATOR = 1;
+	private static final int CLIENT = 2;
+	/*Administrator menu options*/
     private static final int ADD_CLIENT = 1; // 1
     private static final int ADD_PRODUCT = 2; // 1
     private static final int ADD_MANUFACTURER = 3; // 1
@@ -30,6 +37,8 @@ public class UserInterface {
     private static final int SAVE = 11;
     private static final int RETRIEVE = 12;
     private static final int HELP = 13;
+	/*Client menu options*/
+	private static final int ADD_TO_CART = 1;
 
     private UserInterface() {
         if (yesOrNo("Look for saved data and  use it?")) {
@@ -79,6 +88,29 @@ public class UserInterface {
             }
         } while (true);
     }
+	
+	public void startHelp() {
+		System.out.println("Enter a number between 0 and 2 as explained below:");
+		System.out.println(EXIT + " to Exit\n");
+		System.out.println(ADMINISTRATOR + " if you are an administrator");
+		System.out.println(CLIENT + " if you are a client");
+	}
+	
+	public void clientHelp() {
+		System.out.println("Enter a number as explained below:");
+		System.out.println(EXIT + " to Exit\n");
+		System.out.println(ADD_TO_CART + " to add an item to your cart");
+	}
+	
+	public boolean validateClientID(String id) {
+		Client client = warehouse.searchForClient(id);
+		if (client == null) {
+            System.out.println("Could NOT find that client ID...");
+			return false;
+		}
+		else
+			return true;
+	}
 
     public void help() {
         System.out.println("Enter a number between 0 and 13 as explained below:");
@@ -303,8 +335,28 @@ public class UserInterface {
             }
         }
     }
+	
+	public void clientProcess(){
+		String id = getToken("Enter your ID: ");
+		while(!validateClientID(id))
+		{
+			id = getToken("Enter your ID: ");
+		}
+		clientHelp();
+	}
+	
+	public void startProcess(){
+		startHelp();
+		int command = Integer.parseInt(getToken(""));
+        switch (command) {
+            case ADMINISTRATOR:        process();
+                break;
+            case CLIENT:         clientProcess();
+                break;
+            }
+	}
     public static void main(String[] s) {
-        UserInterface.instance().process();
+		UserInterface.instance().startProcess();
     }
 
 

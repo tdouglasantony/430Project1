@@ -112,6 +112,24 @@ public class Warehouse implements Serializable {
 
         return foundProduct;
     }
+	
+	public Client searchForClient(String ClientID) {
+		Client foundClient = null;
+		Iterator allClients = getClients();
+		boolean notFound = true;
+		
+		while (allClients.hasNext()){
+			Client temp = (Client)allClients.next();
+			
+			if(temp.getID().equals(ClientID)){
+				notFound = false;
+				foundClient = temp;
+				break;
+			}
+		}
+		
+		return foundClient;
+	}
 
     public Manufacturer searchForManufacturer(String manID) {
 
