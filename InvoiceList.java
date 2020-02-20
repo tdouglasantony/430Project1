@@ -6,49 +6,49 @@ Tyler Antony
 Abhishek Adhikari
 */
 
-import java.io.Serializable;
 import java.util.*;
 import java.io.*;
 
-public class ManufacturerList implements Serializable {
+public class InvoiceList implements Serializable{
+
     private static final long serialVersionUID = 1L;
-    private List<Manufacturer> manufacturers = new LinkedList();
-    private static ManufacturerList manufacturerList;
-    private ManufacturerList() {
+    private static List<Invoice> invoices = new LinkedList();
+    private static InvoiceList invoiceList;
+    private InvoiceList() {
     }
-    public static ManufacturerList instance() {
-        if (manufacturerList == null) {
-            return (manufacturerList = new ManufacturerList());
+    public static InvoiceList instance() {
+        if (invoiceList == null) {
+            return (invoiceList = new InvoiceList());
         } else {
-            return manufacturerList;
+            return invoiceList;
         }
     }
 
-    public boolean insertManufacturer(Manufacturer maufacturer) {
-        manufacturers.add(maufacturer);
+    public static boolean insertInvoice(Invoice invoice) {
+        invoices.add(invoice);
         return true;
     }
 
-    public Iterator getManufacturers(){
-        return manufacturers.iterator();
+    public Iterator getInvoices(){
+        return invoices.iterator();
     }
 
     private void writeObject(java.io.ObjectOutputStream output) {
         try {
             output.defaultWriteObject();
-            output.writeObject(manufacturerList);
+            output.writeObject(invoiceList);
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
     }
     private void readObject(java.io.ObjectInputStream input) {
         try {
-            if (manufacturerList != null) {
+            if (invoiceList != null) {
                 return;
             } else {
                 input.defaultReadObject();
-                if (manufacturerList == null) {
-                    manufacturerList = (ManufacturerList) input.readObject();
+                if (invoiceList == null) {
+                    invoiceList = (InvoiceList) input.readObject();
                 } else {
                     input.readObject();
                 }
@@ -60,6 +60,6 @@ public class ManufacturerList implements Serializable {
         }
     }
     public String toString() {
-        return manufacturers.toString();
+        return invoices.toString();
     }
 }

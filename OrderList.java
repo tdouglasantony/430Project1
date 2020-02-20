@@ -10,45 +10,45 @@ import java.io.Serializable;
 import java.util.*;
 import java.io.*;
 
-public class ManufacturerList implements Serializable {
+public class OrderList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private List<Manufacturer> manufacturers = new LinkedList();
-    private static ManufacturerList manufacturerList;
-    private ManufacturerList() {
+    private List orders = new LinkedList();
+    private static OrderList orderList;
+    private OrderList() {
     }
-    public static ManufacturerList instance() {
-        if (manufacturerList == null) {
-            return (manufacturerList = new ManufacturerList());
+    public static OrderList instance() {
+        if (orderList == null) {
+            return (orderList = new OrderList());
         } else {
-            return manufacturerList;
+            return orderList;
         }
     }
 
-    public boolean insertManufacturer(Manufacturer maufacturer) {
-        manufacturers.add(maufacturer);
+    public boolean insertOrder(Order order) {
+        orders.add(order);
         return true;
     }
 
-    public Iterator getManufacturers(){
-        return manufacturers.iterator();
+    public Iterator getOrders(){
+        return orders.iterator();
     }
 
     private void writeObject(java.io.ObjectOutputStream output) {
         try {
             output.defaultWriteObject();
-            output.writeObject(manufacturerList);
+            output.writeObject(orderList);
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
     }
     private void readObject(java.io.ObjectInputStream input) {
         try {
-            if (manufacturerList != null) {
+            if (orderList != null) {
                 return;
             } else {
                 input.defaultReadObject();
-                if (manufacturerList == null) {
-                    manufacturerList = (ManufacturerList) input.readObject();
+                if (orderList == null) {
+                    orderList = (OrderList) input.readObject();
                 } else {
                     input.readObject();
                 }
@@ -60,6 +60,6 @@ public class ManufacturerList implements Serializable {
         }
     }
     public String toString() {
-        return manufacturers.toString();
+        return orders.toString();
     }
 }

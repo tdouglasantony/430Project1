@@ -70,6 +70,7 @@ public class Client implements Serializable {
     }
 	return false;
     }
+=======
     public String display(){return "ID: " + id + " NAME: " + name + " ADDRESS: " + address + " PHONE: " + phone;}
     public double getBalanceDue() {
         return balanceDue;
@@ -80,4 +81,6 @@ public class Client implements Serializable {
     public void addTransaction(Transaction t ){
         transactions.add(t);
     }
+
+>>>>>>> master
 }

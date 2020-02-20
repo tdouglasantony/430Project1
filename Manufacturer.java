@@ -1,6 +1,5 @@
 /*
-Group 1
-CSCI 430
+CSCI 430 Group 1
 Nick Juelich
 Majed Alsharikh
 Tyler Antony
@@ -36,7 +35,9 @@ public class Manufacturer implements Serializable {
     public String getID() {
         return id;
     }
+    public List<ProductManufacturer> getProducts() {return products;}
 
+    public void setId(String id) {this.id = id;}
     public void setName(String name) {
         this.name = name;
     }
@@ -58,7 +59,7 @@ public class Manufacturer implements Serializable {
         return products.iterator();
     }
 
-    public String toString() {
-        return "id "+ id + " name "+ name + " phone " + phone;
+    public String display() {
+        return "ID: "+ id + " NAME: "+ name + " PHONE: " + phone;
     }
 }

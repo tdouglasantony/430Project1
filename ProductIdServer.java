@@ -1,6 +1,5 @@
 /*
-Group 1
-CSCI 430
+CSCI 430 Group 1
 Nick Juelich
 Majed Alsharikh
 Tyler Antony
