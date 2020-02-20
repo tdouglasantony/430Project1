@@ -59,6 +59,17 @@ public class ProductList implements Serializable {
             cnfe.printStackTrace();
         }
     }
+	
+	public Product search(String productID) {
+    for (Iterator iterator = products.iterator(); iterator.hasNext(); ) {
+      Product product = (Product) iterator.next();
+      if (product.getID().equals(productID)) {
+        return product;
+      }
+    }
+    return null;
+	}	
+	
     public String toString() {
         return products.toString();
     }

@@ -99,7 +99,6 @@ public class Warehouse implements Serializable {
         Product foundProduct = null;
         Iterator allProducts = getProducts();
         boolean notFound = true;
-
         while (allProducts.hasNext()) {
             Product temp = (Product)allProducts.next();
 
@@ -109,7 +108,6 @@ public class Warehouse implements Serializable {
                 break;
             }
         }
-
         return foundProduct;
     }
 	
@@ -164,14 +162,14 @@ public class Warehouse implements Serializable {
     }
 	
 	public Product addToCart(String ClientID, String productID, int productQuantity){
-		Product product = searchForProduct(productID);
-		Client client = searchForClient(ClientID);
+		Product product = productList.search(productID);
+		Client client = clientList.search(ClientID);
 		product.setQuantity(productQuantity);
 		if(product == null)
 		{
 			return null;
 		}
-		if(!client.addToCart(product))
+		if(!(client.addToCart(product)))
 		{
 			return null;
 		}
