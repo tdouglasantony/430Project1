@@ -140,7 +140,8 @@ public class UserInterface {
             Iterator orders = client.getWaitListOrderIDs();
             System.out.println("The following orders are on a waitlist:");
             while (orders.hasNext()) {
-                String orderID = (String) (orders.next());
+                Order order = (Order)orders.next();
+                String orderID = (String) (order.getID());
                 System.out.println(orderID);
             }
         }

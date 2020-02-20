@@ -21,7 +21,7 @@ public class Client implements Serializable {
     private double balanceDue;
     private static final String CLIENT_STRING = "C";
     private List<Transaction> transactions = new LinkedList();
-    private List <Order> waitListOrderIDs = new LinkedList();
+    private List<Order> waitListOrderIDs = new LinkedList();
 
     public void addToBalance(Double amount) {
         balanceDue+=amount;
