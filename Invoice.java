@@ -1,3 +1,11 @@
+/*
+CSCI 430 Group 1
+Nick Juelich
+Majed Alsharikh
+Tyler Antony
+Abhishek Adhikari
+*/
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;

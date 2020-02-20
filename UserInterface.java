@@ -1,3 +1,10 @@
+/*
+CSCI 430 Group 1
+Nick Juelich
+Majed Alsharikh
+Tyler Antony
+Abhishek Adhikari
+*/
 
 import java.util.*;
 import java.io.*;

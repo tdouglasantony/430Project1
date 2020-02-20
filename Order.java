@@ -1,3 +1,11 @@
+/*
+CSCI 430 Group 1
+Nick Juelich
+Majed Alsharikh
+Tyler Antony
+Abhishek Adhikari
+*/
+
 import java.io.Serializable;
 import java.util.Iterator;
 import java.util.LinkedList;
@@ -68,7 +76,7 @@ public class Order implements Serializable {
         LineItem newItem = new LineItem();
         newItem.setProductID(productID);
         newItem.setQuantityOrdered(quantity);
-        lineItems.add(newItem); 
+        lineItems.add(newItem);
     }
     public void addDollarAmt(double addedDollars) {
         totalPrice += addedDollars;
