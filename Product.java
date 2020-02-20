@@ -1,11 +1,3 @@
-/*
-Group 1
-CSCI 430
-Nick Juelich
-Majed Alsharikh
-Tyler Antony
-Abhishek Adhikari
-*/
 
 import java.util.*;
 import java.lang.*;
@@ -16,8 +8,8 @@ public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
     private String name;
     private String id;
-    private Integer quantity;
-    private List <String> waitListOrderIDs = new LinkedList();
+    private int quantity;
+    private List <Order> waitListOrderIDs = new LinkedList();
     private List <ProductManufacturer> manufacturers = new LinkedList();
 
     public Product(String name) {
@@ -32,13 +24,15 @@ public class Product implements Serializable {
     public String getID() {
         return id;
     }
-    public Integer getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
     public Iterator getWaitListOrderIDs(){
         return waitListOrderIDs.iterator();
     }
-    public List<String> getWaitlist() { return this.waitListOrderIDs;    }
+    public List<Order> getWaitlist() { return this.waitListOrderIDs; }
+    public List<ProductManufacturer> getManufactureList() { return this.manufacturers;    }
+
 
     public void setName(String name) {this.name = name;}
     public void setId(String id) {this.id = id;}
@@ -54,8 +48,14 @@ public class Product implements Serializable {
     public Iterator getProductManufacturers() {
         return manufacturers.iterator();
     }
-    public String toString() {
-        return "name " + name + " id " + id;
+    public String display() {
+        return "ID: " + id + " NAME: " + name;
+    }
+    public void changeQuantity(int amountAdded){
+        quantity += amountAdded;
+    }
+    public void addWaitListOrderID(Order order){
+        waitListOrderIDs.add(order);
     }
 
 }

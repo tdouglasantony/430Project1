@@ -1,47 +1,46 @@
-
+import java.io.Serializable;
 import java.util.*;
 import java.io.*;
 
-public class ClientList implements Serializable{
-
+public class OrderList implements Serializable {
     private static final long serialVersionUID = 1L;
-    private List<Client> clients = new LinkedList();
-    private static ClientList clientList;
-    private ClientList() {
+    private List orders = new LinkedList();
+    private static OrderList orderList;
+    private OrderList() {
     }
-    public static ClientList instance() {
-        if (clientList == null) {
-            return (clientList = new ClientList());
+    public static OrderList instance() {
+        if (orderList == null) {
+            return (orderList = new OrderList());
         } else {
-            return clientList;
+            return orderList;
         }
     }
 
-    public boolean insertClient(Client client) {
-        clients.add(client);
+    public boolean insertOrder(Order order) {
+        orders.add(order);
         return true;
     }
 
-    public Iterator getClients(){
-        return clients.iterator();
+    public Iterator getOrders(){
+        return orders.iterator();
     }
 
     private void writeObject(java.io.ObjectOutputStream output) {
         try {
             output.defaultWriteObject();
-            output.writeObject(clientList);
+            output.writeObject(orderList);
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
     }
     private void readObject(java.io.ObjectInputStream input) {
         try {
-            if (clientList != null) {
+            if (orderList != null) {
                 return;
             } else {
                 input.defaultReadObject();
-                if (clientList == null) {
-                    clientList = (ClientList) input.readObject();
+                if (orderList == null) {
+                    orderList = (OrderList) input.readObject();
                 } else {
                     input.readObject();
                 }
@@ -53,6 +52,6 @@ public class ClientList implements Serializable{
         }
     }
     public String toString() {
-        return clients.toString();
+        return orders.toString();
     }
 }

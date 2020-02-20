@@ -2,46 +2,46 @@
 import java.util.*;
 import java.io.*;
 
-public class ClientList implements Serializable{
+public class InvoiceList implements Serializable{
 
     private static final long serialVersionUID = 1L;
-    private List<Client> clients = new LinkedList();
-    private static ClientList clientList;
-    private ClientList() {
+    private static List<Invoice> invoices = new LinkedList();
+    private static InvoiceList invoiceList;
+    private InvoiceList() {
     }
-    public static ClientList instance() {
-        if (clientList == null) {
-            return (clientList = new ClientList());
+    public static InvoiceList instance() {
+        if (invoiceList == null) {
+            return (invoiceList = new InvoiceList());
         } else {
-            return clientList;
+            return invoiceList;
         }
     }
 
-    public boolean insertClient(Client client) {
-        clients.add(client);
+    public static boolean insertInvoice(Invoice invoice) {
+        invoices.add(invoice);
         return true;
     }
 
-    public Iterator getClients(){
-        return clients.iterator();
+    public Iterator getInvoices(){
+        return invoices.iterator();
     }
 
     private void writeObject(java.io.ObjectOutputStream output) {
         try {
             output.defaultWriteObject();
-            output.writeObject(clientList);
+            output.writeObject(invoiceList);
         } catch(IOException ioe) {
             ioe.printStackTrace();
         }
     }
     private void readObject(java.io.ObjectInputStream input) {
         try {
-            if (clientList != null) {
+            if (invoiceList != null) {
                 return;
             } else {
                 input.defaultReadObject();
-                if (clientList == null) {
-                    clientList = (ClientList) input.readObject();
+                if (invoiceList == null) {
+                    invoiceList = (InvoiceList) input.readObject();
                 } else {
                     input.readObject();
                 }
@@ -53,6 +53,6 @@ public class ClientList implements Serializable{
         }
     }
     public String toString() {
-        return clients.toString();
+        return invoices.toString();
     }
 }
