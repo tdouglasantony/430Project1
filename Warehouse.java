@@ -162,6 +162,21 @@ public class Warehouse implements Serializable {
         }
         return foundProductManufacturer; //null if not found
     }
+	
+	public Product addToCart(String ClientID, String productID, int productQuantity){
+		Product product = searchForProduct(productID);
+		Client client = searchForClient(ClientID);
+		product.setQuantity(productQuantity);
+		if(product == null)
+		{
+			return null;
+		}
+		if(!client.addToCart(product))
+		{
+			return null;
+		}
+		return(product);
+	}
 
     public static Warehouse retrieve() {
         try {
@@ -202,6 +217,7 @@ public class Warehouse implements Serializable {
             System.out.println(ioe);
         }
     }
+	
     private void readObject(java.io.ObjectInputStream input) {
         try {
             input.defaultReadObject();

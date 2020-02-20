@@ -42,6 +42,7 @@ public class Product implements Serializable {
 
     public void setName(String name) {this.name = name;}
     public void setId(String id) {this.id = id;}
+	public void setQuantity(int quantity) {this.quantity = quantity;}
 
     public void addManufacturer(ProductManufacturer newMan) {
         manufacturers.add(newMan);

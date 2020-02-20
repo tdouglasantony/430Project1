@@ -8,6 +8,7 @@ Abhishek Adhikari
 */
 
 import java.io.*;
+import java.util.*;
 
 public class Client implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -15,6 +16,7 @@ public class Client implements Serializable {
     private String address;
     private String phone;
     private String id;
+	private List cart = new LinkedList();
     private static final String CLIENT_STRING = "C";
 
 
@@ -48,6 +50,11 @@ public class Client implements Serializable {
         phone = newPhone;
     }
 
-
-
+	public boolean addToCart(Product product)
+	{
+		if (cart.add(product)) {
+		return true;
+    }
+		return false;
+	}
 }

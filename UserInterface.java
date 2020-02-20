@@ -278,11 +278,13 @@ public class UserInterface {
         }
     }
 	
-	public void addToCart() {
+	public void addToCart(String memberID) {
 		do{
+			Product result;
 			String productID = getToken("Enter product ID");
 			String quantity = getToken("Enter product quantity.");
 			int productQuantity = Integer.parseInt(quantity);
+			result = warehouse.addToCart(memberID, productID, productQuantity);
 			if (!yesOrNo("Add more products to cart?")) {
                 break;
             }
@@ -354,7 +356,7 @@ public class UserInterface {
 		clientHelp();
 		int command = Integer.parseInt(getToken(""));
         switch (command) {
-            case ADD_TO_CART:        addToCart();
+            case ADD_TO_CART:        addToCart(id);
                 break;
             }
 	}
