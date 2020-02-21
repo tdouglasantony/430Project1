@@ -30,10 +30,12 @@ public class UserInterface {
     private static final int ADD_CLIENT_ORDER = 14;
     private static final int PROCESS_ORDER = 15;
     private static final int MAKE_PAYMENT_FOR_CLIENT = 16;
-    private static final int SHOW_CLIENTS_WITH_BALANCE = 17;
-    private static final int SHOW_WAITLISTED_PRODUCT = 18;
-    private static final int SHOW_WAITLISTED_CLIENT = 20;
+    private static final int SHOW_WAITLISTED_PRODUCT = 17;
+    private static final int SHOW_WAITLISTED_CLIENT = 18;
     private static final int ADD_SUPPLIER_ORDER = 19;
+
+
+    private static final int SHOW_CLIENTS_WITH_BALANCE = 20;
     private static final int RECIEVE_ORDER = 21;
 
     private UserInterface() {
@@ -108,7 +110,7 @@ public class UserInterface {
             Iterator orders = client.getWaitListOrderIDs();
             System.out.println("The following orders are on a waitlist:");
             while (orders.hasNext()) {
-                String orderID = (String) (orders.next());
+                String orderID = (orders.next().toString());
                 System.out.println(orderID);
             }
         }
@@ -133,10 +135,9 @@ public class UserInterface {
         System.out.println(ADD_CLIENT_ORDER + " to add an order for a client");
         System.out.println(PROCESS_ORDER + " to process an order for a client");
         System.out.println(MAKE_PAYMENT_FOR_CLIENT + " to make payment for a client");
-        //17
-        System.out.println(ADD_SUPPLIER_ORDER + " to add an order for a supplier");
-        System.out.println(SHOW_WAITLISTED_PRODUCT + " to show orders that are on the waitlist for a given product");
+        System.out.println(SHOW_WAITLISTED_PRODUCT + " to show orders that are on the waitlist for a given product");   
         System.out.println(SHOW_WAITLISTED_CLIENT + " to show orders that are on the waitlist for a given client");
+        System.out.println(ADD_SUPPLIER_ORDER + " to add an order for a supplier");
 
 
     }
