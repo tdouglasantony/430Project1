@@ -17,11 +17,11 @@ public class Client implements Serializable {
     private String address;
     private String phone;
     private String id;
-    private List<Product> cart = new LinkedList();
+    private List<Product> cart = new LinkedList<Product>();
     private double balanceDue;
-    private static final String CLIENT_STRING = "C";
-    private List<Transaction> transactions = new LinkedList();
-    private List<Order> waitListOrderIDs = new LinkedList();
+    private static String CLIENT_STRING = "C";
+    private List<Transaction> transactions = new LinkedList<Transaction>();
+    private List<Order> waitListOrderIDs = new LinkedList<Order>();
 
     public void addToBalance(Double amount) {
         balanceDue+=amount;
@@ -46,10 +46,10 @@ public class Client implements Serializable {
     public String getID() {
         return id;
     }
-    public void addWaitListOrderID(Order order){
+    public void addWaitListOrderID( Order order){
         waitListOrderIDs.add(order);
     }
-    public Iterator getWaitListOrderIDs() {return waitListOrderIDs.iterator();}
+    public Iterator<Order> getWaitListOrderIDs() {return waitListOrderIDs.iterator();}
     public List<Order> getWaitlist() { return this.waitListOrderIDs;}
 
 
@@ -64,12 +64,15 @@ public class Client implements Serializable {
     }
 
     public boolean addToCart(Product product)
-    {
-	if (cart.add(product)) {
-	return true;
+    {   
+        if (cart == null)
+            cart = new LinkedList<Product>();
+        if (cart.add(product)) {
+            return true;
+        }
+        return false;
     }
-	return false;
-    }
+
     public String display(){return "ID: " + id + " NAME: " + name + " ADDRESS: " + address + " PHONE: " + phone;}
     public double getBalanceDue() {
         return balanceDue;

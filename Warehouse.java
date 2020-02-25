@@ -191,10 +191,10 @@ public class Warehouse implements Serializable {
 		Product product = productList.search(productID);
 		Client client = clientList.search(ClientID);
 		product.setQuantity(productQuantity);
-		if(product == null)
-		{
-			return null;
-		}
+		// if(product == null)
+		// {
+		// 	return null;
+		// }
 		if(!(client.addToCart(product)))
 		{
 			return null;
