@@ -42,6 +42,7 @@ public class UserInterface {
     private static final int SHOW_WAITLISTED_CLIENT = 20;
     private static final int ADD_SUPPLIER_ORDER = 19;
     private static final int RECIEVE_ORDER = 21;
+    private static final int EDIT_CART = 22;
 	/*Client menu options*/
     private static final int ADD_TO_CART = 1;
 
@@ -170,7 +171,7 @@ public class UserInterface {
         System.out.println(ADD_SUPPLIER_ORDER + " to add an order for a supplier");
         System.out.println(SHOW_WAITLISTED_PRODUCT + " to show orders that are on the waitlist for a given product");
         System.out.println(SHOW_WAITLISTED_CLIENT + " to show orders that are on the waitlist for a given client");
-
+        System.out.println(EDIT_CART + " to edit a user's cart.");
 
     }
 
@@ -498,6 +499,10 @@ public class UserInterface {
         }
     }
 
+    public void editCart(){
+        System.out.println("Work in progress");
+    }
+
 
     public void process() {
         int command;
@@ -543,6 +548,8 @@ public class UserInterface {
                 case ADD_SUPPLIER_ORDER: addSupplierOrder();
                     break;
                 case PROCESS_ORDER:  processOrder();
+                    break;
+                case EDIT_CART:  editCart();
                     break;
             }
         }

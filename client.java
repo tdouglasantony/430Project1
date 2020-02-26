@@ -65,10 +65,12 @@ public class Client implements Serializable {
 
     public boolean addToCart(Product product)
     {
-	if (cart.add(product)) {
-	return true;
-    }
-	return false;
+        if (cart == null)
+            cart = new LinkedList<Product>();
+        if (cart.add(product)) {
+        return true;
+        }
+        return false;
     }
     public String display(){return "ID: " + id + " NAME: " + name + " ADDRESS: " + address + " PHONE: " + phone;}
     public double getBalanceDue() {
