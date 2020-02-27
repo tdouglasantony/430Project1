@@ -45,7 +45,6 @@ public class UserInterface {
     private static final int EDIT_CART = 22;
 	/*Client menu options*/
     private static final int ADD_TO_CART = 1;
-    private static final int CLIENT_SAVE = 2;
 
         private UserInterface() {
         if (yesOrNo("Look for saved data and  use it?")) {
@@ -87,7 +86,7 @@ public class UserInterface {
         do {
             try {
                 int value = Integer.parseInt(getToken("Enter command:" + HELP + " for help"));
-                if (value >= EXIT && value <= 22) {
+                if (value >= EXIT && value <= 20) {
                     return value;
                 }
             } catch (NumberFormatException nfe) {
@@ -106,8 +105,7 @@ public class UserInterface {
 	public void clientHelp() {
 		System.out.println("Enter a number as explained below:");
 		System.out.println(EXIT + " to Exit\n");
-        System.out.println(ADD_TO_CART + " to add an item to your cart");
-        System.out.println(CLIENT_SAVE + " to save");
+		System.out.println(ADD_TO_CART + " to add an item to your cart");
 	}
 	
 	public boolean validateClientID(String id) {
@@ -502,14 +500,7 @@ public class UserInterface {
     }
 
     public void editCart(){
-        String clientID = getToken("Enter client ID:");
-        Client client = warehouse.searchForClient(clientID);
-        if (client == null) {
-            System.out.println("Could not find client with the ID "+ clientID);
-            return;
-        }
-
-
+        System.out.println("Work in progress");
     }
 
 
@@ -571,16 +562,11 @@ public class UserInterface {
 			id = getToken("Enter your ID: ");
 		}
 		clientHelp();
-        int command = Integer.parseInt(getToken(""));
-        while ((command = getCommand()) != EXIT)
-        {
-            switch (command) {
-                case ADD_TO_CART:        addToCart(id);
-                    break;
-                case CLIENT_SAVE:              save();
-                    break;
-                }
-        }
+		int command = Integer.parseInt(getToken(""));
+        switch (command) {
+            case ADD_TO_CART:        addToCart(id);
+                break;
+            }
 	}
 	
 	public void startProcess(){
