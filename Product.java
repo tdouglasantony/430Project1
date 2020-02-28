@@ -57,7 +57,7 @@ public class Product implements Serializable {
         return manufacturers.iterator();
     }
     public String display() {
-        return "ID: " + id + " NAME: " + name;
+        return "ID: " + id + " NAME: " + name + "QUANTITY: " + quantity;
     }
     public void changeQuantity(int amountAdded){
         quantity += amountAdded;

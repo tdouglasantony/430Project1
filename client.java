@@ -51,7 +51,11 @@ public class Client implements Serializable {
     }
     public Iterator getWaitListOrderIDs() {return waitListOrderIDs.iterator();}
     public List<Order> getWaitlist() { return this.waitListOrderIDs;}
-
+    public Iterator getCart() {
+        if (cart == null)
+            cart = new LinkedList<Product>();
+        return cart.iterator();
+    }
 
     public void setName(String newName) {
         name = newName;

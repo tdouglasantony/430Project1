@@ -46,6 +46,7 @@ public class UserInterface {
 	/*Client menu options*/
     private static final int ADD_TO_CART = 1;
     private static final int CLIENT_SAVE = 2;
+    private static final int CLIENT_HELP = 3;
 
         private UserInterface() {
         if (yesOrNo("Look for saved data and  use it?")) {
@@ -87,6 +88,19 @@ public class UserInterface {
         do {
             try {
                 int value = Integer.parseInt(getToken("Enter command:" + HELP + " for help"));
+                if (value >= EXIT && value <= 22) {
+                    return value;
+                }
+            } catch (NumberFormatException nfe) {
+                System.out.println("Enter a number");
+            }
+        } while (true);
+    }
+
+    public int getClientCommand() {
+        do {
+            try {
+                int value = Integer.parseInt(getToken("Enter command:" + CLIENT_HELP + " for help"));
                 if (value >= EXIT && value <= 22) {
                     return value;
                 }
@@ -503,13 +517,19 @@ public class UserInterface {
 
     public void editCart(){
         String clientID = getToken("Enter client ID:");
+        int newQuantity;
         Client client = warehouse.searchForClient(clientID);
         if (client == null) {
             System.out.println("Could not find client with the ID "+ clientID);
             return;
         }
-
-
+        Iterator cart = client.getCart();
+        while(cart.hasNext()){
+            Product product = (Product) cart.next();
+            System.out.println("Current product: " + product.display());
+            newQuantity = Integer.parseInt(getToken("Enter a new quantity for the item:"));
+            product.setQuantity(newQuantity);
+        }
     }
 
 
@@ -571,14 +591,15 @@ public class UserInterface {
 			id = getToken("Enter your ID: ");
 		}
 		clientHelp();
-        int command = Integer.parseInt(getToken(""));
-        while ((command = getCommand()) != EXIT)
+        int command;
+        while ((command = getClientCommand()) != EXIT)
         {
             switch (command) {
                 case ADD_TO_CART:        addToCart(id);
                     break;
                 case CLIENT_SAVE:              save();
                     break;
+                case CLIENT_HELP:       clientHelp();
                 }
         }
 	}
