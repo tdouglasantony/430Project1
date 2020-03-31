@@ -4,7 +4,9 @@ import java.io.*;
 
 public class WarehouseContext{
 
+	private static Warehouse warehouse;
 	private BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+	private WarehouseState[] states;
 
 	public String getToken(String prompt){
 		do{
@@ -30,14 +32,32 @@ public class WarehouseContext{
 		return true;
 	}
 
+	private void retrieve(){
+		try{
+			Warehouse tempWarehouse = Warehouse.retrieve();
+			if(tempWarehouse != null){
+				System.out.println("The warehouse has been successfully retrieved from the file WarehouseData.\n");
+				warehouse = tempWarehouse;
+			}
+			else{
+				System.out.println("File does not exist.  Creating new warehouse.\n");
+				warehouse = Warehouse.instance();
+			}
+		}
+		catch(Exception cnfe){
+			cnfe.printStackTrace();
+		}
+	}
+
 	private WarehouseContext(){
 		System.out.println("In WarehouseContext constructor.");
 		if(yesOrNo("Look for saved data and use it?")){
-			System.out.println("User typed yes.");
+			retrieve();
 		}
 		else{
-			System.out.println("User typed no.");
+			warehouse = Warehouse.instance();
 		}
+		states = new WarehouseState[4];
 	}
 
 	public static void main(String[] args){
