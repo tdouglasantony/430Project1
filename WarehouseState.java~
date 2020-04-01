@@ -1,6 +1,6 @@
 public abstract class WarehouseState{
 	protected static WarehouseContext context;
-	projected WarehouseState(){
+	protected WarehouseState(){
 		//context = WarehouseContext.instance();
 	}
 	public abstract void run();
