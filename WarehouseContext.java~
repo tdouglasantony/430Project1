@@ -64,7 +64,7 @@ public class WarehouseContext{
 		states[1] = ClerkState.instance();
 		states[2] = UserState.instance();
 		states[3] = LoginState.instance();
-		currentState = 2;
+		currentState = 3;
 	}
 
 	public static WarehouseContext instance(){
