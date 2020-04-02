@@ -44,6 +44,81 @@ public class ClerkState extends WarehouseState{
         }
         else
             System.out.println("Client's ID: " + result.getID());
+	}
+	
+	public void showProducts() {
+        Iterator allProducts = warehouse.getProducts();
+        while (allProducts.hasNext()){
+            Product product = (Product)(allProducts.next());
+            System.out.println(product.display());
+        }
+	}
+	
+	public void showClients() {
+        Iterator allClients = warehouse.getClients();
+        while (allClients.hasNext()){
+            Client client = (Client)(allClients.next());
+            System.out.println(client.display());
+        }
+	}
+	
+	public void showClientsWithBalance() {
+        Iterator clients = warehouse.getClients();
+        while(clients.hasNext()) {
+            Client client = (Client) clients.next();
+            if (client.getBalanceDue() > 0.0) {
+                System.out.println("Client " + client.getID()+ " owes "+ client.getBalanceDue());
+            }
+        }
+	}
+	
+	public void showWaitlistedOrdersForAProduct() {
+        String id = getToken("Enter id of product");
+        Product product = warehouse.searchForProduct(id);
+        if (product == null) {
+            System.out.println("Could NOT find that product ID...");
+        } else {
+            Iterator orders = product.getWaitListOrderIDs();
+            System.out.println("The following orders are on a waitlist:");
+            while (orders.hasNext()) {
+                System.out.println(orders.next());
+            }
+        }
+	}
+	
+	public void makePaymentForClient () {
+
+        String clientID = getToken("Enter client ID:");
+        Client client = warehouse.searchForClient(clientID);
+        double balance, amount, updatedBalance;
+
+        if (client == null) {
+            System.out.println("Could not find client with the ID "+ clientID);
+            return;
+        }
+
+        balance = client.getBalanceDue();
+
+        if (balance > 0.0) {
+            System.out.println("Current balance: \n" + balance);
+        } else {
+            System.out.println("This client has NO outstanding balance");
+            return;
+        }
+
+        amount = Double.parseDouble(getToken("Enter Payment Amount"));
+
+        int attempts = 3;
+        while (amount > balance && attempts > 0) {
+            System.out.println(attempts + " attempts left.. ");
+            System.out.println("PAYMENT EXCEEDS AMOUNT OWED");
+            amount = Double.parseDouble(getToken("Please enter a payment amount that does not exceed the"
+                    + "client's balance\n Current balance is: " + balance + "\n:"));
+            --attempts;
+        }
+        updatedBalance = warehouse.makePayment(clientID, amount);
+        System.out.println("Updated Balance: \n" + updatedBalance);
+
     }
 
 	private ClerkState(){
@@ -93,6 +168,18 @@ public class ClerkState extends WarehouseState{
 			switch(command){
 				case ADD_CLIENT:	addClient();
 					break;
+				case SHOW_PRODUCTS:	showProducts();
+					break;
+				case SHOW_CLIENTS: showClients();
+					break;
+				case SHOW_CLIENTS_WITH_BALANCE: showClientsWithBalance();
+					break;
+				case SHOW_WAITLISTED_PRODUCT: showWaitlistedOrdersForAProduct();
+					break;
+				case MAKE_PAYMENT_FOR_CLIENT: makePaymentForClient();
+					break;
+				case HELP:              help();
+                    break;
 			}
 		}
 	}
